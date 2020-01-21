@@ -11,14 +11,14 @@ import BigInt
 import web3
 
 enum MainInteractorProtocolError: Error {
-    case noModelToSave
+    case transactionCreationFailed
 }
 
 protocol MainInteractorProtocol {
     var callbackModelUpdate: (_ model: MainViewModel) -> () { get set }
     func start()
     func onViewDidAppear()
-    func send(completion: (Result<String, Error>) -> Void)
+    func send(completion: @escaping (Result<String, Error>) -> Void)
 }
 
 class MainInteractor {
@@ -60,29 +60,33 @@ extension MainInteractor: MainInteractorProtocol {
         // TODO
     }
     
-    func send(completion: (Result<String, Error>) -> Void) {
+    func send(completion: @escaping (Result<String, Error>) -> Void) {
         let amount = BigInt(10000000000000000)
         self.sendETH(withAmount: amount, completion: completion)
-    }
-    
-    //MARK: Model handler
-    
-    func onModelUpdate() {
-        callbackModelUpdate(self.model)
     }
 }
 
 private extension MainInteractor {
     
-    func handleClientError(withError error: EthereumClientError) {
+    func handleClientError(withError error: Error) {
         switch error {
         default:
             self.model = MainViewModel(walletBalance: "Unexpected error fetching balance")
         }
     }
     
-    func sendETH(withAmount amount: BigInt, completion: (Result<String, Error>) -> Void) {
-        // TODO: Make request to Infura using web3
-        completion(.success("0xEEEEEEEEEEEEEEEE"))
+    func sendETH(withAmount amount: BigInt, completion: @escaping (Result<String, Error>) -> Void) {
+        do {
+            let transaction = try self.walletManager.createTransaction()
+            self.walletManager.sendTransaction(transaction, completion: completion)
+        } catch {
+            completion(.failure(MainInteractorProtocolError.transactionCreationFailed))
+        }
+    }
+    
+    //MARK: Model handler
+    
+    func onModelUpdate() {
+        callbackModelUpdate(self.model)
     }
 }

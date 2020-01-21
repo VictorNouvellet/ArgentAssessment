@@ -82,7 +82,12 @@ private extension MainViewController {
 // MARK: Private methods
 
 private extension MainViewController {
-    
+    func showAlert(title: String, message: String? = nil, handler: ((UIAlertAction) -> Void)? = nil) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: handler)
+        alertController.addAction(defaultAction)
+        present(alertController, animated: true)
+    }
 }
 
 // MARK: Internal methods
@@ -98,7 +103,24 @@ extension MainViewController {
     @IBAction func sendButtonTapped(_ button: UIButton) {
         self.selectionFeedbackGenerator.selectionChanged()
         self.interactor.send(completion: { [weak self] result in
-            print("\(self.debugDescription) - Save result: \(result)")
+            DispatchQueue.main.async(execute: { [weak self] in
+                print("\(self.debugDescription) - Save result: \(result)")
+                switch result {
+                case .failure(let error):
+                    self?.showAlert(title: "Transaction error", message: "Error description: \(error.localizedDescription)")
+                case .success(let txHash):
+                    let title = "Transaction success!"
+                    let message = "TxHash: \(txHash)"
+                    let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                    let defaultAction = UIAlertAction(title: "OK", style: .default)
+                    alertController.addAction(defaultAction)
+                    let copyTxHashAction = UIAlertAction(title: "Copy txHash", style: .default) { _ in
+                        UIPasteboard.general.string = txHash
+                    }
+                    alertController.addAction(copyTxHashAction)
+                    self?.present(alertController, animated: true)
+                }
+            })
         })
     }
     
