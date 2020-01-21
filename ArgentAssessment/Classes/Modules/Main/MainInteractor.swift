@@ -63,5 +63,6 @@ private extension MainInteractor {
     
     func sendETH(withAmount amount: BigInt, completion: (Result<String, Error>) -> Void) {
         // TODO: Make request to Infura using web3
+        completion(.success("0xEEEEEEEEEEEEEEEE"))
     }
 }

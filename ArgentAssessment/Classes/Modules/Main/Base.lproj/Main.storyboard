@@ -35,10 +35,16 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TL9-BW-HPo">
                                 <rect key="frame" x="137" y="156" width="101" height="30"/>
                                 <state key="normal" title="Send 0.01 ETH"/>
+                                <connections>
+                                    <action selector="sendButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xcN-nM-zke"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Beg-yi-U3l">
                                 <rect key="frame" x="111.5" y="316" width="152" height="30"/>
                                 <state key="normal" title="View ERC20 Transfers"/>
+                                <connections>
+                                    <action selector="viewTransfersButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fIa-11-HNM"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -53,7 +59,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="sendButton" destination="TL9-BW-HPo" id="VuX-t4-rVN"/>
+                        <outlet property="sendButton" destination="TL9-BW-HPo" id="nAk-99-6R4"/>
                         <outlet property="viewTransfersButton" destination="Beg-yi-U3l" id="ihO-5c-KQf"/>
                         <outlet property="walletBalanceLabel" destination="Oy6-PG-WJL" id="kTI-dO-LHP"/>
                     </connections>

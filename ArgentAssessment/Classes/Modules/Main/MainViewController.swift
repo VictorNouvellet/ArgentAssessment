@@ -21,7 +21,7 @@ class MainViewController: UIViewController {
     }
     
     @IBOutlet weak var viewTransfersButton: UIButton! {
-        didSet { sendButton.setTitle(NSLocalizedString("View ERC20 Transfers", comment: ""), for: UIControl.State()) }
+        didSet { viewTransfersButton.setTitle(NSLocalizedString("View ERC20 Transfers", comment: ""), for: UIControl.State()) }
     }
     
     // MARK: Injected vars
@@ -42,9 +42,19 @@ extension MainViewController {
         self.interactor.start()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.interactor.onViewDidAppear()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     override func viewDidLayoutSubviews() {
@@ -90,5 +100,10 @@ extension MainViewController {
         self.interactor.send(completion: { [weak self] result in
             print("Save result: \(result)")
         })
+    }
+    
+    @IBAction func viewTransfersButtonTapped(_ button: UIButton) {
+        guard let transfersListVC = TransfersListBuilder.getView() else { return }
+        self.navigationController?.pushViewController(transfersListVC, animated: true)
     }
 }

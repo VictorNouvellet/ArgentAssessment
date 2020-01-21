@@ -15,6 +15,11 @@
 		571AA4E323D70AB000FE3144 /* MainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571AA4D823D70AB000FE3144 /* MainInteractor.swift */; };
 		571AA4E423D70AB000FE3144 /* MainBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571AA4D923D70AB000FE3144 /* MainBuilder.swift */; };
 		571AA4E523D70AB000FE3144 /* CALayer+Rounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571AA4DB23D70AB000FE3144 /* CALayer+Rounded.swift */; };
+		571AA4FC23D7133600FE3144 /* TransfersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571AA4F723D7133600FE3144 /* TransfersListViewController.swift */; };
+		571AA4FD23D7133600FE3144 /* TransfersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571AA4F823D7133600FE3144 /* TransfersListViewModel.swift */; };
+		571AA4FE23D7133600FE3144 /* TransfersListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571AA4F923D7133600FE3144 /* TransfersListInteractor.swift */; };
+		571AA4FF23D7133600FE3144 /* TransfersListBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571AA4FA23D7133600FE3144 /* TransfersListBuilder.swift */; };
+		571AA50023D7133600FE3144 /* TransfersList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 571AA4FB23D7133600FE3144 /* TransfersList.storyboard */; };
 		572DC7BF23D709B4001A492C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC7BE23D709B4001A492C /* AppDelegate.swift */; };
 		572DC7C123D709B4001A492C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC7C023D709B4001A492C /* SceneDelegate.swift */; };
 		572DC7C823D709B6001A492C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 572DC7C723D709B6001A492C /* Assets.xcassets */; };
@@ -43,6 +48,11 @@
 		571AA4D823D70AB000FE3144 /* MainInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainInteractor.swift; sourceTree = "<group>"; };
 		571AA4D923D70AB000FE3144 /* MainBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainBuilder.swift; sourceTree = "<group>"; };
 		571AA4DB23D70AB000FE3144 /* CALayer+Rounded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+Rounded.swift"; sourceTree = "<group>"; };
+		571AA4F723D7133600FE3144 /* TransfersListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransfersListViewController.swift; sourceTree = "<group>"; };
+		571AA4F823D7133600FE3144 /* TransfersListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransfersListViewModel.swift; sourceTree = "<group>"; };
+		571AA4F923D7133600FE3144 /* TransfersListInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransfersListInteractor.swift; sourceTree = "<group>"; };
+		571AA4FA23D7133600FE3144 /* TransfersListBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransfersListBuilder.swift; sourceTree = "<group>"; };
+		571AA4FB23D7133600FE3144 /* TransfersList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TransfersList.storyboard; sourceTree = "<group>"; };
 		572DC7BB23D709B4001A492C /* ArgentAssessment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArgentAssessment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		572DC7BE23D709B4001A492C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		572DC7C023D709B4001A492C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +122,7 @@
 				571AA4CD23D70AB000FE3144 /* App */,
 				571AA4D023D70AB000FE3144 /* Base */,
 				571AA4D323D70AB000FE3144 /* Main */,
+				571AA4F623D7133600FE3144 /* TransfersList */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -152,6 +163,18 @@
 				571AA4DB23D70AB000FE3144 /* CALayer+Rounded.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		571AA4F623D7133600FE3144 /* TransfersList */ = {
+			isa = PBXGroup;
+			children = (
+				571AA4F723D7133600FE3144 /* TransfersListViewController.swift */,
+				571AA4F823D7133600FE3144 /* TransfersListViewModel.swift */,
+				571AA4F923D7133600FE3144 /* TransfersListInteractor.swift */,
+				571AA4FA23D7133600FE3144 /* TransfersListBuilder.swift */,
+				571AA4FB23D7133600FE3144 /* TransfersList.storyboard */,
+			);
+			path = TransfersList;
 			sourceTree = "<group>";
 		};
 		572DC7B223D709B4001A492C = {
@@ -297,6 +320,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				571AA50023D7133600FE3144 /* TransfersList.storyboard in Resources */,
 				572DC7CB23D709B6001A492C /* LaunchScreen.storyboard in Resources */,
 				571AA4E023D70AB000FE3144 /* Main.storyboard in Resources */,
 				571AA4DF23D70AB000FE3144 /* Base.storyboard in Resources */,
@@ -385,11 +409,15 @@
 				571AA4E123D70AB000FE3144 /* MainViewModel.swift in Sources */,
 				571AA4E523D70AB000FE3144 /* CALayer+Rounded.swift in Sources */,
 				571AA4E423D70AB000FE3144 /* MainBuilder.swift in Sources */,
+				571AA4FD23D7133600FE3144 /* TransfersListViewModel.swift in Sources */,
 				572DC7BF23D709B4001A492C /* AppDelegate.swift in Sources */,
 				571AA4E323D70AB000FE3144 /* MainInteractor.swift in Sources */,
+				571AA4FE23D7133600FE3144 /* TransfersListInteractor.swift in Sources */,
 				572DC7C123D709B4001A492C /* SceneDelegate.swift in Sources */,
+				571AA4FF23D7133600FE3144 /* TransfersListBuilder.swift in Sources */,
 				571AA4DE23D70AB000FE3144 /* BaseViewController.swift in Sources */,
 				571AA4E223D70AB000FE3144 /* MainViewController.swift in Sources */,
+				571AA4FC23D7133600FE3144 /* TransfersListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
