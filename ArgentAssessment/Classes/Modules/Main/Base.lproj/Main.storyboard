@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Main View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="ArgentAssessment" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="hpt-S6-end">
+                                <rect key="frame" x="130" y="40" width="115" height="51"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wallet Balance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r0a-Gs-hHa">
+                                        <rect key="frame" x="0.0" y="0.0" width="115" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 ETH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oy6-PG-WJL">
+                                        <rect key="frame" x="28" y="25.5" width="59" height="25.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TL9-BW-HPo">
+                                <rect key="frame" x="137" y="156" width="101" height="30"/>
+                                <state key="normal" title="Send 0.01 ETH"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Beg-yi-U3l">
+                                <rect key="frame" x="111.5" y="316" width="152" height="30"/>
+                                <state key="normal" title="View ERC20 Transfers"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="hpt-S6-end" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="55g-os-VKG"/>
+                            <constraint firstItem="Beg-yi-U3l" firstAttribute="top" secondItem="TL9-BW-HPo" secondAttribute="bottom" constant="130" id="OUm-1d-zoW"/>
+                            <constraint firstItem="TL9-BW-HPo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gSF-PG-xsX"/>
+                            <constraint firstItem="Beg-yi-U3l" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="l7l-tF-9NX"/>
+                            <constraint firstItem="TL9-BW-HPo" firstAttribute="top" secondItem="hpt-S6-end" secondAttribute="bottom" constant="65" id="mHh-Ze-9Sw"/>
+                            <constraint firstItem="hpt-S6-end" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="usH-b2-SGQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="sendButton" destination="TL9-BW-HPo" id="VuX-t4-rVN"/>
+                        <outlet property="viewTransfersButton" destination="Beg-yi-U3l" id="ihO-5c-KQf"/>
+                        <outlet property="walletBalanceLabel" destination="Oy6-PG-WJL" id="kTI-dO-LHP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="992.79999999999995" y="26.53673163418291"/>
+        </scene>
+    </scenes>
+</document>
