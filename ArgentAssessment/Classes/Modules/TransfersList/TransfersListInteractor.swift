@@ -31,7 +31,7 @@ final class TransfersListInteractor {
 
 extension TransfersListInteractor: TransfersListInteractorInterface {
     func onViewDidLoad() {
-        // TODO
+        self.model = TransfersListViewModel.mockModel()
     }
 }
 

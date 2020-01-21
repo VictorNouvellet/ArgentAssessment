@@ -20,6 +20,8 @@
 		571AA4FE23D7133600FE3144 /* TransfersListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571AA4F923D7133600FE3144 /* TransfersListInteractor.swift */; };
 		571AA4FF23D7133600FE3144 /* TransfersListBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571AA4FA23D7133600FE3144 /* TransfersListBuilder.swift */; };
 		571AA50023D7133600FE3144 /* TransfersList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 571AA4FB23D7133600FE3144 /* TransfersList.storyboard */; };
+		571AA50323D71A6F00FE3144 /* TransfersListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571AA50223D71A6F00FE3144 /* TransfersListCell.swift */; };
+		571AA50523D7287E00FE3144 /* UICollectionView+Dequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571AA50423D7287E00FE3144 /* UICollectionView+Dequeue.swift */; };
 		572DC7BF23D709B4001A492C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC7BE23D709B4001A492C /* AppDelegate.swift */; };
 		572DC7C123D709B4001A492C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC7C023D709B4001A492C /* SceneDelegate.swift */; };
 		572DC7C823D709B6001A492C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 572DC7C723D709B6001A492C /* Assets.xcassets */; };
@@ -53,6 +55,8 @@
 		571AA4F923D7133600FE3144 /* TransfersListInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransfersListInteractor.swift; sourceTree = "<group>"; };
 		571AA4FA23D7133600FE3144 /* TransfersListBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransfersListBuilder.swift; sourceTree = "<group>"; };
 		571AA4FB23D7133600FE3144 /* TransfersList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TransfersList.storyboard; sourceTree = "<group>"; };
+		571AA50223D71A6F00FE3144 /* TransfersListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransfersListCell.swift; sourceTree = "<group>"; };
+		571AA50423D7287E00FE3144 /* UICollectionView+Dequeue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Dequeue.swift"; sourceTree = "<group>"; };
 		572DC7BB23D709B4001A492C /* ArgentAssessment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArgentAssessment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		572DC7BE23D709B4001A492C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		572DC7C023D709B4001A492C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -161,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				571AA4DB23D70AB000FE3144 /* CALayer+Rounded.swift */,
+				571AA50423D7287E00FE3144 /* UICollectionView+Dequeue.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -168,13 +173,22 @@
 		571AA4F623D7133600FE3144 /* TransfersList */ = {
 			isa = PBXGroup;
 			children = (
+				571AA50123D71A5600FE3144 /* Cells */,
+				571AA4FB23D7133600FE3144 /* TransfersList.storyboard */,
 				571AA4F723D7133600FE3144 /* TransfersListViewController.swift */,
 				571AA4F823D7133600FE3144 /* TransfersListViewModel.swift */,
 				571AA4F923D7133600FE3144 /* TransfersListInteractor.swift */,
 				571AA4FA23D7133600FE3144 /* TransfersListBuilder.swift */,
-				571AA4FB23D7133600FE3144 /* TransfersList.storyboard */,
 			);
 			path = TransfersList;
+			sourceTree = "<group>";
+		};
+		571AA50123D71A5600FE3144 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				571AA50223D71A6F00FE3144 /* TransfersListCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		572DC7B223D709B4001A492C = {
@@ -417,6 +431,8 @@
 				571AA4FF23D7133600FE3144 /* TransfersListBuilder.swift in Sources */,
 				571AA4DE23D70AB000FE3144 /* BaseViewController.swift in Sources */,
 				571AA4E223D70AB000FE3144 /* MainViewController.swift in Sources */,
+				571AA50523D7287E00FE3144 /* UICollectionView+Dequeue.swift in Sources */,
+				571AA50323D71A6F00FE3144 /* TransfersListCell.swift in Sources */,
 				571AA4FC23D7133600FE3144 /* TransfersListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

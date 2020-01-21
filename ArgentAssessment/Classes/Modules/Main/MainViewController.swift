@@ -98,7 +98,7 @@ extension MainViewController {
     @IBAction func sendButtonTapped(_ button: UIButton) {
         self.selectionFeedbackGenerator.selectionChanged()
         self.interactor.send(completion: { [weak self] result in
-            print("Save result: \(result)")
+            print("\(self.debugDescription) - Save result: \(result)")
         })
     }
     
