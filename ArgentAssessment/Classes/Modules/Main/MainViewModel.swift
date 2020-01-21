@@ -16,6 +16,6 @@ struct MainViewModel {
     }
     
     static func defaultModel() -> MainViewModel {
-        return MainViewModel(walletBalance: "0 ETH".localizedUppercase)
+        return MainViewModel(walletBalance: "...".localizedUppercase)
     }
 }

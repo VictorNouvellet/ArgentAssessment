@@ -26,6 +26,7 @@ class MainInteractor {
     // MARK: - Injected vars
     
     weak var view: MainViewControllerProtocol!
+    var walletManager: WalletManager!
     
     // MARK: - Private vars
     
@@ -41,6 +42,18 @@ extension MainInteractor: MainInteractorProtocol {
     func start() {
         let newModel = MainViewModel.defaultModel()
         self.model = newModel
+        
+        self.walletManager.getCurrentBalance { result in
+            DispatchQueue.main.async(execute: { [weak self] in
+                switch result {
+                case .failure(let error):
+                    self?.handleClientError(withError: error)
+                case .success(let balance):
+                    let etherBalance = balance.weiToEther(decimals: 2)
+                    self?.model = MainViewModel(walletBalance: "\(etherBalance) ETH")
+                }
+            })
+        }
     }
     
     func onViewDidAppear() {
@@ -60,6 +73,13 @@ extension MainInteractor: MainInteractorProtocol {
 }
 
 private extension MainInteractor {
+    
+    func handleClientError(withError error: EthereumClientError) {
+        switch error {
+        default:
+            self.model = MainViewModel(walletBalance: "Unexpected error fetching balance")
+        }
+    }
     
     func sendETH(withAmount amount: BigInt, completion: (Result<String, Error>) -> Void) {
         // TODO: Make request to Infura using web3
