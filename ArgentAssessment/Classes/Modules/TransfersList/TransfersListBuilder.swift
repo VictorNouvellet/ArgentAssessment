@@ -19,6 +19,7 @@ final class TransfersListBuilder {
         let view = self.storyboard.instantiateInitialViewController() as? TransfersListViewController
         let interactor = TransfersListInteractor()
         interactor.view = view
+        interactor.walletManager = WalletManager()
         view?.interactor = interactor
         return view
     }

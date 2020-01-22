@@ -10,9 +10,13 @@ import UIKit
 
 final class TransfersListCell: UICollectionViewCell {
     
+    // MARK: IBOutlets
+    
     @IBOutlet weak var fromLabel: UILabel!
     @IBOutlet weak var tokenLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
+    
+    // MARK: Internal methods
     
     func configure(withFromAddress from: String, token: String, amount: String) {
         self.fromLabel.text = from

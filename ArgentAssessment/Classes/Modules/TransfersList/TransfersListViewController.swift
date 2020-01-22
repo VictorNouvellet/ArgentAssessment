@@ -15,15 +15,15 @@ final class TransfersListViewController: UIViewController {
         case main
     }
     
-    //MARK: - Interface Builder vars
+    //MARK: IBOutlets
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    // MARK: - Injected vars
+    // MARK: Injected vars
     
     var interactor: TransfersListInteractorInterface!
     
-    // MARK: - Private vars
+    // MARK: Private vars
     
     var dataSource: UICollectionViewDiffableDataSource<Section, TransfersListTransferViewModel>!
 }

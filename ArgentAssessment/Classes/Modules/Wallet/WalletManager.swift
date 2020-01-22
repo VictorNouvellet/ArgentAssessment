@@ -74,4 +74,16 @@ class WalletManager {
             }
         }
     }
+    
+    func getTransfersList(completion: @escaping (Result<[ERC20Events.Transfer], Error>) -> Void) {
+        let erc20 = ERC20(client: self.client)
+        erc20.transferEventsTo(
+        recipient: EthereumAddress(argentWalletAddress), fromBlock: EthereumBlock.Earliest, toBlock: EthereumBlock.Latest) { (error, transfers) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(transfers ?? []))
+            }
+        }
+    }
 }
