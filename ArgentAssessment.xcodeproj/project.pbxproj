@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5701FAD223D8A0D60018CEC9 /* TransfersListTransferViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701FAD123D8A0D60018CEC9 /* TransfersListTransferViewModel.swift */; };
+		5701FAD823D8A3DE0018CEC9 /* ArgentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701FAD723D8A3DE0018CEC9 /* ArgentButton.swift */; };
+		5701FADA23D8A4740018CEC9 /* UIColor+Argent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701FAD923D8A4740018CEC9 /* UIColor+Argent.swift */; };
 		571AA4DE23D70AB000FE3144 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571AA4D123D70AB000FE3144 /* BaseViewController.swift */; };
 		571AA4DF23D70AB000FE3144 /* Base.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 571AA4D223D70AB000FE3144 /* Base.storyboard */; };
 		571AA4E023D70AB000FE3144 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 571AA4D423D70AB000FE3144 /* Main.storyboard */; };
@@ -29,6 +31,7 @@
 		572DC7C823D709B6001A492C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 572DC7C723D709B6001A492C /* Assets.xcassets */; };
 		572DC7CB23D709B6001A492C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 572DC7C923D709B6001A492C /* LaunchScreen.storyboard */; };
 		572DC7D623D709B6001A492C /* ArgentAssessmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC7D523D709B6001A492C /* ArgentAssessmentTests.swift */; };
+		57CD79A523D8AE0A00607042 /* ArgentLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CD79A423D8AE0A00607042 /* ArgentLabel.swift */; };
 		57E39C7723D7461D00A48F83 /* BigInt+Ethereum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E39C7623D7461D00A48F83 /* BigInt+Ethereum.swift */; };
 		57E39C7B23D763BD00A48F83 /* TransferToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E39C7A23D763BD00A48F83 /* TransferToken.swift */; };
 		6CBD6719E6DC93B4687EE7CC /* Pods_ArgentAssessmentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A1223D3668B8D24CE9AC4E0 /* Pods_ArgentAssessmentTests.framework */; };
@@ -47,6 +50,8 @@
 
 /* Begin PBXFileReference section */
 		5701FAD123D8A0D60018CEC9 /* TransfersListTransferViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransfersListTransferViewModel.swift; sourceTree = "<group>"; };
+		5701FAD723D8A3DE0018CEC9 /* ArgentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgentButton.swift; sourceTree = "<group>"; };
+		5701FAD923D8A4740018CEC9 /* UIColor+Argent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Argent.swift"; sourceTree = "<group>"; };
 		571AA4D123D70AB000FE3144 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		571AA4D223D70AB000FE3144 /* Base.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Base.storyboard; sourceTree = "<group>"; };
 		571AA4D523D70AB000FE3144 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -72,6 +77,7 @@
 		572DC7D123D709B6001A492C /* ArgentAssessmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArgentAssessmentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		572DC7D523D709B6001A492C /* ArgentAssessmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgentAssessmentTests.swift; sourceTree = "<group>"; };
 		572DC7D723D709B6001A492C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		57CD79A423D8AE0A00607042 /* ArgentLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgentLabel.swift; sourceTree = "<group>"; };
 		57E39C7623D7461D00A48F83 /* BigInt+Ethereum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BigInt+Ethereum.swift"; sourceTree = "<group>"; };
 		57E39C7A23D763BD00A48F83 /* TransferToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferToken.swift; sourceTree = "<group>"; };
 		6A1223D3668B8D24CE9AC4E0 /* Pods_ArgentAssessmentTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ArgentAssessmentTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,9 +117,19 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		5701FAD623D8A3CF0018CEC9 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				5701FAD723D8A3DE0018CEC9 /* ArgentButton.swift */,
+				57CD79A423D8AE0A00607042 /* ArgentLabel.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		571AA4C923D70A5000FE3144 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				5701FAD623D8A3CF0018CEC9 /* Common */,
 				57E39C7923D7620C00A48F83 /* ABIFunctions */,
 				571AA4DA23D70AB000FE3144 /* Extensions */,
 				571AA4CC23D70AB000FE3144 /* Modules */,
@@ -186,6 +202,7 @@
 				571AA4DB23D70AB000FE3144 /* CALayer+Rounded.swift */,
 				571AA50423D7287E00FE3144 /* UICollectionView+Dequeue.swift */,
 				57E39C7623D7461D00A48F83 /* BigInt+Ethereum.swift */,
+				5701FAD923D8A4740018CEC9 /* UIColor+Argent.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -462,8 +479,10 @@
 				571AA4E423D70AB000FE3144 /* MainBuilder.swift in Sources */,
 				571AA4FD23D7133600FE3144 /* TransfersListViewModel.swift in Sources */,
 				572DC7BF23D709B4001A492C /* AppDelegate.swift in Sources */,
+				57CD79A523D8AE0A00607042 /* ArgentLabel.swift in Sources */,
 				57E39C7B23D763BD00A48F83 /* TransferToken.swift in Sources */,
 				571AA4E323D70AB000FE3144 /* MainInteractor.swift in Sources */,
+				5701FADA23D8A4740018CEC9 /* UIColor+Argent.swift in Sources */,
 				57E39C7723D7461D00A48F83 /* BigInt+Ethereum.swift in Sources */,
 				571AA4FE23D7133600FE3144 /* TransfersListInteractor.swift in Sources */,
 				5701FAD223D8A0D60018CEC9 /* TransfersListTransferViewModel.swift in Sources */,
@@ -474,6 +493,7 @@
 				571AA50523D7287E00FE3144 /* UICollectionView+Dequeue.swift in Sources */,
 				571AA50323D71A6F00FE3144 /* TransfersListCell.swift in Sources */,
 				571AA4FC23D7133600FE3144 /* TransfersListViewController.swift in Sources */,
+				5701FAD823D8A3DE0018CEC9 /* ArgentButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

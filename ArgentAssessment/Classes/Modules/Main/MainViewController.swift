@@ -14,13 +14,13 @@ protocol MainViewControllerProtocol: class {
 
 class MainViewController: UIViewController {
     
-    @IBOutlet weak var walletBalanceLabel: UILabel!
+    @IBOutlet weak var walletBalanceLabel: ArgentLabel!
     
-    @IBOutlet weak var sendButton: UIButton! {
+    @IBOutlet weak var sendButton: ArgentButton! {
         didSet { sendButton.setTitle(NSLocalizedString("Send 0.01 ETH", comment: ""), for: UIControl.State()) }
     }
     
-    @IBOutlet weak var viewTransfersButton: UIButton! {
+    @IBOutlet weak var viewTransfersButton: ArgentButton! {
         didSet { viewTransfersButton.setTitle(NSLocalizedString("View ERC20 Transfers", comment: ""), for: UIControl.State()) }
     }
     
@@ -36,6 +36,7 @@ class MainViewController: UIViewController {
 // MARK: View management methods
 
 extension MainViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
@@ -69,13 +70,26 @@ private extension MainViewController {
     
     func setup() {
         self.setupViewModelCallback()
+        self.setupWalletBalanceLabelInteraction()
     }
     
     func setupViewModelCallback() {
         self.interactor.callbackModelUpdate = { [weak self] (viewModel) in
             guard let weakSelf = self else { return }
-            weakSelf.walletBalanceLabel.text = viewModel.walletBalance
+            
+            if let walletBalance = viewModel.walletBalance {
+                weakSelf.walletBalanceLabel.text = walletBalance
+                weakSelf.walletBalanceLabel.hideLoading()
+            } else {
+                weakSelf.walletBalanceLabel.showLoading()
+            }
         }
+    }
+    
+    func setupWalletBalanceLabelInteraction() {
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(walletBalanceLabelTapped))
+        self.walletBalanceLabel.addGestureRecognizer(tapRecognizer)
+        self.walletBalanceLabel.isUserInteractionEnabled = true
     }
 }
 
@@ -94,32 +108,36 @@ private extension MainViewController {
 
 extension MainViewController: MainViewControllerProtocol {
     
+    func handleSendReceipt(result: Result<String, Error>) {
+        switch result {
+        case .failure(let error):
+            self.showAlert(title: "Transaction error", message: "Error description: \(error.localizedDescription)")
+        case .success(let txHash):
+            let title = "Transaction success!"
+            let message = "TxHash: \(txHash)"
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .default)
+            alertController.addAction(defaultAction)
+            let copyTxHashAction = UIAlertAction(title: "Copy txHash", style: .default) { _ in
+                UIPasteboard.general.string = txHash
+            }
+            alertController.addAction(copyTxHashAction)
+            self.present(alertController, animated: true)
+        }
+    }
 }
 
 // MARK: IBActions & objc methods
 
 extension MainViewController {
     
-    @IBAction func sendButtonTapped(_ button: UIButton) {
+    @IBAction func sendButtonTapped(_ button: ArgentButton) {
+        button.showLoading()
         self.selectionFeedbackGenerator.selectionChanged()
         self.interactor.send(completion: { [weak self] result in
             DispatchQueue.main.async(execute: { [weak self] in
-                print("\(self.debugDescription) - Save result: \(result)")
-                switch result {
-                case .failure(let error):
-                    self?.showAlert(title: "Transaction error", message: "Error description: \(error.localizedDescription)")
-                case .success(let txHash):
-                    let title = "Transaction success!"
-                    let message = "TxHash: \(txHash)"
-                    let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-                    let defaultAction = UIAlertAction(title: "OK", style: .default)
-                    alertController.addAction(defaultAction)
-                    let copyTxHashAction = UIAlertAction(title: "Copy txHash", style: .default) { _ in
-                        UIPasteboard.general.string = txHash
-                    }
-                    alertController.addAction(copyTxHashAction)
-                    self?.present(alertController, animated: true)
-                }
+                self?.handleSendReceipt(result: result)
+                button.hideLoading()
             })
         })
     }
@@ -127,5 +145,9 @@ extension MainViewController {
     @IBAction func viewTransfersButtonTapped(_ button: UIButton) {
         guard let transfersListVC = TransfersListBuilder.getView() else { return }
         self.navigationController?.pushViewController(transfersListVC, animated: true)
+    }
+    
+    @objc func walletBalanceLabelTapped() {
+        self.interactor.updateBalance()
     }
 }

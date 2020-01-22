@@ -9,13 +9,13 @@
 import Foundation
 
 struct MainViewModel {
-    let walletBalance: String
+    let walletBalance: String?
     
-    init(walletBalance: String)   {
+    init(walletBalance: String?)   {
         self.walletBalance = walletBalance
     }
     
     static func defaultModel() -> MainViewModel {
-        return MainViewModel(walletBalance: "...".localizedUppercase)
+        return MainViewModel(walletBalance: nil)
     }
 }

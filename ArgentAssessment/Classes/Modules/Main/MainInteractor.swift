@@ -18,6 +18,7 @@ protocol MainInteractorProtocol {
     var callbackModelUpdate: (_ model: MainViewModel) -> () { get set }
     func start()
     func onViewDidAppear()
+    func updateBalance()
     func send(completion: @escaping (Result<String, Error>) -> Void)
 }
 
@@ -37,12 +38,21 @@ class MainInteractor {
     var callbackModelUpdate : (_ model: MainViewModel) -> () = {_ in }
 }
 
+// MARK: - MainInteractorProtocol methods
+
 extension MainInteractor: MainInteractorProtocol {
     
     func start() {
         let newModel = MainViewModel.defaultModel()
         self.model = newModel
-        
+    }
+    
+    func onViewDidAppear() {
+        self.updateBalance()
+    }
+    
+    func updateBalance() {
+        self.model = MainViewModel(walletBalance: nil)
         self.walletManager.getCurrentBalance { result in
             DispatchQueue.main.async(execute: { [weak self] in
                 switch result {
@@ -56,15 +66,13 @@ extension MainInteractor: MainInteractorProtocol {
         }
     }
     
-    func onViewDidAppear() {
-        // TODO
-    }
-    
     func send(completion: @escaping (Result<String, Error>) -> Void) {
-        let amount = BigInt(10000000000000000)
+        let amount: BigInt = 10000000000000000
         self.sendETH(withAmount: amount, completion: completion)
     }
 }
+
+// MARK: - Private methods
 
 private extension MainInteractor {
     
