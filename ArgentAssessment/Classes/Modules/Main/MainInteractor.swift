@@ -27,7 +27,7 @@ class MainInteractor {
     // MARK: - Injected vars
     
     weak var view: MainViewControllerProtocol!
-    var walletManager: WalletManager!
+    var walletManager: WalletManagerProtocol!
     
     // MARK: - Private vars
     

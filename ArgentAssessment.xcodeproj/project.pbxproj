@@ -30,7 +30,7 @@
 		572DC7C123D709B4001A492C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC7C023D709B4001A492C /* SceneDelegate.swift */; };
 		572DC7C823D709B6001A492C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 572DC7C723D709B6001A492C /* Assets.xcassets */; };
 		572DC7CB23D709B6001A492C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 572DC7C923D709B6001A492C /* LaunchScreen.storyboard */; };
-		572DC7D623D709B6001A492C /* ArgentAssessmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DC7D523D709B6001A492C /* ArgentAssessmentTests.swift */; };
+		573DCE8323D8CFCF0004B846 /* WalletManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573DCE8223D8CFCF0004B846 /* WalletManagerTests.swift */; };
 		57CD79A523D8AE0A00607042 /* ArgentLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CD79A423D8AE0A00607042 /* ArgentLabel.swift */; };
 		57E39C7723D7461D00A48F83 /* BigInt+Ethereum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E39C7623D7461D00A48F83 /* BigInt+Ethereum.swift */; };
 		57E39C7B23D763BD00A48F83 /* TransferToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E39C7A23D763BD00A48F83 /* TransferToken.swift */; };
@@ -75,8 +75,8 @@
 		572DC7CA23D709B6001A492C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		572DC7CC23D709B6001A492C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		572DC7D123D709B6001A492C /* ArgentAssessmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArgentAssessmentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		572DC7D523D709B6001A492C /* ArgentAssessmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgentAssessmentTests.swift; sourceTree = "<group>"; };
 		572DC7D723D709B6001A492C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		573DCE8223D8CFCF0004B846 /* WalletManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletManagerTests.swift; sourceTree = "<group>"; };
 		57CD79A423D8AE0A00607042 /* ArgentLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgentLabel.swift; sourceTree = "<group>"; };
 		57E39C7623D7461D00A48F83 /* BigInt+Ethereum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BigInt+Ethereum.swift"; sourceTree = "<group>"; };
 		57E39C7A23D763BD00A48F83 /* TransferToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferToken.swift; sourceTree = "<group>"; };
@@ -269,7 +269,7 @@
 		572DC7D423D709B6001A492C /* ArgentAssessmentTests */ = {
 			isa = PBXGroup;
 			children = (
-				572DC7D523D709B6001A492C /* ArgentAssessmentTests.swift */,
+				573DCE8223D8CFCF0004B846 /* WalletManagerTests.swift */,
 				572DC7D723D709B6001A492C /* Info.plist */,
 			);
 			path = ArgentAssessmentTests;
@@ -501,7 +501,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				572DC7D623D709B6001A492C /* ArgentAssessmentTests.swift in Sources */,
+				573DCE8323D8CFCF0004B846 /* WalletManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

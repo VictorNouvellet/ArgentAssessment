@@ -8,11 +8,11 @@
 
 import UIKit
 
-protocol MainViewControllerProtocol: class {
-    
-}
+protocol MainViewControllerProtocol: class { }
 
 class MainViewController: UIViewController {
+    
+    // MARK: IBOutlets
     
     @IBOutlet weak var walletBalanceLabel: ArgentLabel!
     

@@ -16,6 +16,13 @@ enum WalletManagerError: Error {
     case unexpectedError
 }
 
+protocol WalletManagerProtocol {
+    func getCurrentBalance(completion: @escaping (Result<BigUInt, Error>) -> Void)
+    func createTransaction() throws -> EthereumTransaction
+    func sendTransaction(_ transaction: EthereumTransaction, completion: @escaping (Result<String, Error>) -> Void)
+    func getTransfersList(completion: @escaping (Result<[ERC20Events.Transfer], Error>) -> Void)
+}
+
 class WalletManager {
     
     // MARK: Account vars
@@ -34,30 +41,27 @@ class WalletManager {
     private lazy var client: EthereumClient = EthereumClient(url: clientUrl)
     
     // MARK: Argent
-    let argentWalletAddress = "0x70ABd7F0c9Bdc109b579180B272525880Fb7E0cB"
-    let transferManagerModuleAddress = "0xcdAd167a8A9EAd2DECEdA7c8cC908108b0Cc06D1"
-    let transferManagerToken = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"
-    let recipientAddress = "0x361b7f3ed03d74C6aD3E6923C2a298fC6b741367" // Metamask Account
+    let argentWalletAddress = EthereumAddress("0x70ABd7F0c9Bdc109b579180B272525880Fb7E0cB")
+    let transferManagerModuleAddress = EthereumAddress("0xcdAd167a8A9EAd2DECEdA7c8cC908108b0Cc06D1")
+    let transferManagerToken = EthereumAddress("0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE")
+    let recipientAddress = EthereumAddress("0x361b7f3ed03d74C6aD3E6923C2a298fC6b741367") // Metamask Account
+}
+
+//MARK: - WalletManagerProtocol methods
+
+extension WalletManager: WalletManagerProtocol {
 
     func getCurrentBalance(completion: @escaping (Result<BigUInt, Error>) -> Void) {
-        self.client.eth_getBalance(address: argentWalletAddress, block: .Latest) { (error, balance) in
-            if let balance = balance {
-                completion(.success(balance))
-            } else if let error = error {
-                completion(.failure(error))
-            } else {
-                completion(.failure(WalletManagerError.unexpectedError))
-            }
-        }
+        self.getCurrentBalance(address: argentWalletAddress.value, completion: completion)
     }
     
     func createTransaction() throws -> EthereumTransaction {
         let transferTokenFunction = TransferToken(
-            contract: EthereumAddress(transferManagerModuleAddress),
-            from: EthereumAddress(argentWalletAddress),
-            wallet: EthereumAddress(argentWalletAddress),
-            token: EthereumAddress(transferManagerToken),
-            to: EthereumAddress(recipientAddress)
+            contract: transferManagerModuleAddress,
+            from: argentWalletAddress,
+            wallet: argentWalletAddress,
+            token: transferManagerToken,
+            to: recipientAddress
         )
         return try transferTokenFunction.transaction()
     }
@@ -78,11 +82,28 @@ class WalletManager {
     func getTransfersList(completion: @escaping (Result<[ERC20Events.Transfer], Error>) -> Void) {
         let erc20 = ERC20(client: self.client)
         erc20.transferEventsTo(
-        recipient: EthereumAddress(argentWalletAddress), fromBlock: EthereumBlock.Earliest, toBlock: EthereumBlock.Latest) { (error, transfers) in
+        recipient: argentWalletAddress, fromBlock: .Earliest, toBlock: .Latest) { (error, transfers) in
             if let error = error {
                 completion(.failure(error))
             } else {
                 completion(.success(transfers ?? []))
+            }
+        }
+    }
+}
+
+//MARK: - Private methods
+
+private extension WalletManager {
+    
+    func getCurrentBalance(address: String, completion: @escaping (Result<BigUInt, Error>) -> Void) {
+        self.client.eth_getBalance(address: address, block: .Latest) { (error, balance) in
+            if let balance = balance {
+                completion(.success(balance))
+            } else if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.failure(WalletManagerError.unexpectedError))
             }
         }
     }

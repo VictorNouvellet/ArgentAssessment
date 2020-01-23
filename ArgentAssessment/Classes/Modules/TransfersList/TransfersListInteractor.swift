@@ -18,8 +18,8 @@ final class TransfersListInteractor {
     
     // MARK: Injected vars
     
-    weak var view: TransfersListViewController!
-    var walletManager: WalletManager!
+    weak var view: TransfersListViewControllerProtocol!
+    var walletManager: WalletManagerProtocol!
     
     // MARK: Private vars
     

@@ -9,7 +9,9 @@
 import Foundation
 import UIKit
 
-final class TransfersListViewController: UIViewController {
+protocol TransfersListViewControllerProtocol: class { }
+
+final class TransfersListViewController: UIViewController, TransfersListViewControllerProtocol {
     
     enum Section: CaseIterable {
         case main
