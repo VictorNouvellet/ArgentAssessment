@@ -33,7 +33,7 @@ class ArgentLabel: UILabel {
     func setup() {
         self.activityIndicator?.removeFromSuperview()
         self.activityIndicator = UIActivityIndicatorView.init(frame: CGRect(x: (self.frame.width / 2) - 10, y: (self.frame.height / 2) - 10, width: 20.0, height: 20.0))
-        self.activityIndicator?.color = UIColor.black
+        self.activityIndicator?.color = UIColor.label
         self.activityIndicator?.backgroundColor = .clear
         if let ac = self.activityIndicator {
             self.addSubview(ac)
