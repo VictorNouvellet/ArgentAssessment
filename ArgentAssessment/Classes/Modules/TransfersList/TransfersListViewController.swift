@@ -23,7 +23,7 @@ final class TransfersListViewController: UIViewController, TransfersListViewCont
     
     // MARK: Injected vars
     
-    var interactor: TransfersListInteractorInterface!
+    var interactor: TransfersListInteractorProtocol!
     
     // MARK: Private vars
     
@@ -48,6 +48,15 @@ extension TransfersListViewController {
         self.interactor.onViewDidLoad()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.interactor.onViewDidAppear {
+            DispatchQueue.main.async(execute: { [weak self] in
+                self?.collectionView.refreshControl?.endRefreshing()
+            })
+        }
+    }
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         collectionView.collectionViewLayout.invalidateLayout()
@@ -56,8 +65,14 @@ extension TransfersListViewController {
 
 //MARK: - Setup methods
 
-extension TransfersListViewController {
+private extension TransfersListViewController {
+    
     func setup() {
+        self.setupCollectionView()
+        self.setupRefreshControl()
+    }
+    
+    func setupCollectionView() {
         self.collectionView.delegate = self
         self.dataSource = UICollectionViewDiffableDataSource<Section, TransfersListTransferViewModel>(collectionView: collectionView) { (collectionView, indexPath, model) -> UICollectionViewCell? in
             let cell: TransfersListCell = collectionView.dequeueReusableCell(for: indexPath)
@@ -65,12 +80,21 @@ extension TransfersListViewController {
             return cell
         }
     }
+    
+    func setupRefreshControl() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(manualRefreshTriggered), for: .valueChanged)
+        self.collectionView.addSubview(refreshControl)
+        self.collectionView.alwaysBounceVertical = true
+        self.collectionView.refreshControl = refreshControl
+    }
 }
 
 
 //MARK: - Internal methods
 
 extension TransfersListViewController {
+    
     func updateCollectionView(with transfers: [TransfersListTransferViewModel]?) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, TransfersListTransferViewModel>()
         if let transfers = transfers {
@@ -78,6 +102,14 @@ extension TransfersListViewController {
             snapshot.appendItems(transfers, toSection: .main)
         }
         dataSource.apply(snapshot, animatingDifferences: true)
+    }
+    
+    @objc func manualRefreshTriggered() {
+        self.interactor.onTransfersListManualRefresh {
+            DispatchQueue.main.async(execute: { [weak self] in
+                self?.collectionView.refreshControl?.endRefreshing()
+            })
+        }
     }
 }
 
@@ -87,6 +119,5 @@ extension TransfersListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let kHeight = 110
         return CGSize(width: collectionView.bounds.size.width, height: CGFloat(kHeight))
-        
     }
 }

@@ -9,9 +9,11 @@
 import Foundation
 import web3
 
-protocol TransfersListInteractorInterface {
+protocol TransfersListInteractorProtocol {
     var callbackModelUpdate: (_ model: TransfersListViewModel) -> () { get set }
     func onViewDidLoad()
+    func onViewDidAppear(completion: (() -> Void)?)
+    func onTransfersListManualRefresh(completion: (() -> Void)?)
 }
 
 final class TransfersListInteractor {
@@ -32,12 +34,32 @@ final class TransfersListInteractor {
 
 // MARK: - Internal methods
 
-extension TransfersListInteractor: TransfersListInteractorInterface {
+extension TransfersListInteractor: TransfersListInteractorProtocol {
     func onViewDidLoad() {
         self.model = TransfersListViewModel.defaultModel()
-        
+    }
+    
+    func onViewDidAppear(completion: (() -> Void)?) {
+        self.updateTransfersList(completion: completion)
+    }
+    
+    func onTransfersListManualRefresh(completion: (() -> Void)?) {
+        self.updateTransfersList(completion: completion)
+    }
+}
+
+// MARK: - Private methods
+
+private extension TransfersListInteractor {
+    
+    func getTransfers(completion: @escaping (Result<[ERC20Events.Transfer], Error>) -> Void) {
+        self.walletManager.getTransfersList(completion: completion)
+    }
+    
+    func updateTransfersList(completion: (() -> Void)? = nil) {
         self.getTransfers { result in
             DispatchQueue.main.async(execute: { [weak self] in
+                completion?()
                 guard case let .success(transfers) = result else {
                     self?.model = TransfersListViewModel.defaultModel()
                     return
@@ -54,15 +76,6 @@ extension TransfersListInteractor: TransfersListInteractorInterface {
                 self?.model = TransfersListViewModel(transfersList: transfersModels.reversed())
             })
         }
-    }
-}
-
-// MARK: - Private methods
-
-private extension TransfersListInteractor {
-    
-    func getTransfers(completion: @escaping (Result<[ERC20Events.Transfer], Error>) -> Void) {
-        self.walletManager.getTransfersList(completion: completion)
     }
     
     // MARK: Model handler
