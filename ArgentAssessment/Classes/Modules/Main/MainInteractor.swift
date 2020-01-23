@@ -67,7 +67,7 @@ extension MainInteractor: MainInteractorProtocol {
     }
     
     func send(completion: @escaping (Result<String, Error>) -> Void) {
-        let amount: BigInt = 10000000000000000
+        let amount: BigUInt = 10000000000000000
         self.sendETH(withAmount: amount, completion: completion)
     }
 }
@@ -83,9 +83,9 @@ private extension MainInteractor {
         }
     }
     
-    func sendETH(withAmount amount: BigInt, completion: @escaping (Result<String, Error>) -> Void) {
+    func sendETH(withAmount amount: BigUInt, completion: @escaping (Result<String, Error>) -> Void) {
         do {
-            let transaction = try self.walletManager.createTransaction()
+            let transaction = try self.walletManager.createTransaction(amount: amount)
             self.walletManager.sendTransaction(transaction, completion: completion)
         } catch {
             completion(.failure(MainInteractorProtocolError.transactionCreationFailed))

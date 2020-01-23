@@ -21,7 +21,7 @@ struct TransferToken: ABIFunction {
     let wallet: EthereumAddress
     let token: EthereumAddress
     let to: EthereumAddress
-    let amount: BigUInt = BigUInt(10000000000000000)
+    let amount: BigUInt
     let data: Data = Data()
     
     func encode(to encoder: ABIFunctionEncoder) throws {

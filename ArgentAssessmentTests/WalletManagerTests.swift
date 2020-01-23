@@ -40,8 +40,8 @@ class WalletManagerTests: XCTestCase {
     }
 
     func testCreateTransaction() {
-        let createTransactionFlag = try? walletManager.createTransaction()
-        XCTAssertNotNil(createTransactionFlag)
+        let transaction = try? walletManager.createTransaction(amount: 10)
+        XCTAssertNotNil(transaction)
     }
     
     func testGetTransfersList() {

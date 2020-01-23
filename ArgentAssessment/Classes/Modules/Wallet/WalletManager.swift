@@ -18,7 +18,7 @@ enum WalletManagerError: Error {
 
 protocol WalletManagerProtocol {
     func getCurrentBalance(completion: @escaping (Result<BigUInt, Error>) -> Void)
-    func createTransaction() throws -> EthereumTransaction
+    func createTransaction(amount: BigUInt) throws -> EthereumTransaction
     func sendTransaction(_ transaction: EthereumTransaction, completion: @escaping (Result<String, Error>) -> Void)
     func getTransfersList(completion: @escaping (Result<[ERC20Events.Transfer], Error>) -> Void)
 }
@@ -55,13 +55,14 @@ extension WalletManager: WalletManagerProtocol {
         self.getCurrentBalance(address: argentWalletAddress.value, completion: completion)
     }
     
-    func createTransaction() throws -> EthereumTransaction {
+    func createTransaction(amount: BigUInt) throws -> EthereumTransaction {
         let transferTokenFunction = TransferToken(
             contract: transferManagerModuleAddress,
             from: argentWalletAddress,
             wallet: argentWalletAddress,
             token: transferManagerToken,
-            to: recipientAddress
+            to: recipientAddress,
+            amount: amount
         )
         return try transferTokenFunction.transaction()
     }
